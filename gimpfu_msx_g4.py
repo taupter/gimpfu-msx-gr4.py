@@ -403,7 +403,7 @@ def scatter_noise(drawable, x, y, error):
                 continue
 
             nchannels, pixel = gimpfu.pdb.gimp_drawable_get_pixel(drawable, off_x, off_y)
-            npixel = tuple(max(0, min(255, round(color + error * debt))) for color, error in zip(pixel[0:3], error))
+            npixel = tuple(int(max(0, min(255, round(color + error * debt)))) for color, error in zip(pixel[0:3], error))
             print('pos:', (off_x, off_y), ':', pixel[0:3], "->", npixel)
             gimpfu.pdb.gimp_drawable_set_pixel(drawable, off_x, off_y, nchannels, npixel)
 
